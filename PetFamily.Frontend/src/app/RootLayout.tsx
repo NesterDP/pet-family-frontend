@@ -1,11 +1,15 @@
 import { Outlet } from "react-router";
+import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 export function RootLayout() {
 	return (
-		<div>
+		<div className="min-h-screen flex flex-col">
 			<Header />
-			<Outlet />
+			<main className="flex-grow flex items-center justify-center p-4">
+				<Outlet />
+			</main>
+			<Footer />
 		</div>
 	);
 }
