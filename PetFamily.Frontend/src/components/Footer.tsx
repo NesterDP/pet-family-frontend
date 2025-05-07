@@ -6,7 +6,7 @@ export function Footer() {
 	const navigate = useNavigate();
 
 	return (
-		<footer className="bg-gray-800 text-white p-4 flex justify-between items-center">
+		<footer className="bg-[#212121] text-white p-4 flex justify-between items-center">
 			{/* Левая часть: иконки-кнопки */}
 			<div className="flex gap-4">
 				<button

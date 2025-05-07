@@ -1,4 +1,4 @@
-import { BoardArray, SquareValue } from "./Game";
+import { BoardArray, SquareValue } from "../types/gameTypes";
 
 export function calculateWinner(squares: BoardArray): SquareValue {
 	const lines = [

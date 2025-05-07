@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { SquareProps } from "../../types/gameTypes";
+import { SquareProps } from "../types/gameTypes";
 
 export function Square({ value, onSquareClick }: SquareProps) {
 	return (

@@ -6,7 +6,7 @@ export function RootLayout() {
 	return (
 		<div className="min-h-screen flex flex-col">
 			<Header />
-			<main className="flex-grow flex items-center justify-center p-4">
+			<main className="flex-1">
 				<Outlet />
 			</main>
 			<Footer />

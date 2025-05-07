@@ -1,5 +1,5 @@
-import { BoardProps } from "../../types/gameTypes";
-import { calculateWinner } from "../../utils/calculateWinner";
+import { BoardProps } from "../types/gameTypes";
+import { calculateWinner } from "../utils/calculateWinner";
 import { Square } from "./Square";
 
 export function Board({ xIsNext, squares, onPlay }: BoardProps) {

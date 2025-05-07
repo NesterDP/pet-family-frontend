@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BoardArray } from "../../types/gameTypes";
+import { BoardArray } from "../types/gameTypes";
 import { Board } from "./Board";
 
 export default function Game() {
