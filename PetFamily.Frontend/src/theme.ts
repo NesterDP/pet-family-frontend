@@ -17,7 +17,10 @@ export const lightTheme = createTheme({
 	palette: {
 		mode: "light",
 		primary: {
-			main: grey[50],
+			light: grey[100], // светлый серый
+			main: grey[800], // темно-серый (для кнопок и акцентов)
+			dark: grey[900], // почти черный
+			contrastText: "#fff", // белый текст на темном фоне
 		},
 	},
 });

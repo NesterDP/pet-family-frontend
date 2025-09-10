@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Menu } from "../components/Menu";
+import { PageContainer } from "../components/PageContainer";
 import Game from "../pages/Game/components/Game";
 import { MainPage } from "../pages/MainPage";
 import { RootLayout } from "./RootLayout";
@@ -12,8 +13,10 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: (
 					<>
-						<Menu />
-						<MainPage />
+						<PageContainer>
+							<Menu />
+							<MainPage />
+						</PageContainer>
 					</>
 				),
 			},
