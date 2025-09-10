@@ -1,15 +1,24 @@
+import { Box } from "@mui/material";
 import { Outlet } from "react-router";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 export function RootLayout() {
 	return (
-		<div className="min-h-screen flex flex-col">
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				minHeight: "100vh",
+				bgcolor: "background.default",
+				color: "text.primary",
+			}}
+		>
 			<Header />
-			<main className="flex-1">
+			<Box component="main" sx={{ flexGrow: 1 }}>
 				<Outlet />
-			</main>
+			</Box>
 			<Footer />
-		</div>
+		</Box>
 	);
 }

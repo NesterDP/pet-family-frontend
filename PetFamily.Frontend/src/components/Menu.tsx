@@ -1,12 +1,20 @@
 import HomeIcon from "@mui/icons-material/Home";
 import RealEstateAgentIcon from "@mui/icons-material/RealEstateAgent";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import { Box } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 
 export function Menu() {
 	return (
-		<div role="presentation">
+		<Box
+			sx={{
+				pl: 3, // padding-left: 24px
+				pt: 2, // padding-top: 16px
+				pb: 1, // padding-bottom: 8px
+			}}
+			role="presentation"
+		>
 			<Breadcrumbs
 				aria-label="breadcrumb"
 				separator="-"
@@ -42,6 +50,6 @@ export function Menu() {
 					Помочь животным
 				</Link>
 			</Breadcrumbs>
-		</div>
+		</Box>
 	);
 }

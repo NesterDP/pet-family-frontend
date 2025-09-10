@@ -9,7 +9,7 @@ export function Header() {
 	const navigate = useNavigate();
 
 	return (
-		<AppBar position="static">
+		<AppBar position="static" color="primary">
 			<div className="flex flex-row items-center justify-between py-2 px-3">
 				{/* Левые иконки */}
 				<div className="flex flex-row items-center gap-2">

@@ -13,9 +13,7 @@ export const router = createBrowserRouter([
 				element: (
 					<>
 						<Menu />
-						<div className="flex-1 flex items-center justify-center">
-							<MainPage />
-						</div>
+						<MainPage />
 					</>
 				),
 			},
@@ -24,9 +22,7 @@ export const router = createBrowserRouter([
 				element: (
 					<>
 						<Menu />
-						<div className="flex-1 flex items-center justify-center">
-							Волонтеры
-						</div>
+						Волонтеры
 					</>
 				),
 			},
@@ -35,9 +31,7 @@ export const router = createBrowserRouter([
 				element: (
 					<>
 						<Menu />
-						<div className="flex-1 flex items-center justify-center">
-							Питомцы
-						</div>
+						Питомцы
 					</>
 				),
 			},
@@ -46,12 +40,11 @@ export const router = createBrowserRouter([
 				element: (
 					<>
 						<Menu />
-						<div className="flex-1 flex items-center justify-center">
-							<Game />
-						</div>
+						<Game />
 					</>
 				),
 			},
 		],
+		errorElement: <div>404</div>,
 	},
 ]);
