@@ -16,7 +16,7 @@ export function Menu() {
 		return 0;
 	};
 
-	const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+	const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
 		const paths = ["/", "/volunteers", "/pets"];
 		navigate(paths[newValue]);
 	};
@@ -32,7 +32,9 @@ export function Menu() {
 			<Tabs
 				value={getActiveTab()}
 				onChange={handleTabChange}
-				variant="fullWidth"
+				variant="scrollable"
+				scrollButtons
+				allowScrollButtonsMobile
 				aria-label="navigation menu"
 			>
 				<Tab icon={<HomeIcon />} label="Главная" iconPosition="start" />

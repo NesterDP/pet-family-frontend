@@ -12,11 +12,13 @@ import {
 	FormGroup,
 	IconButton,
 	MenuItem,
+	Pagination,
 	Paper,
 	Slider,
 	TextField,
 	Typography,
 } from "@mui/material";
+import { useState } from "react";
 
 // Mock данные животных
 const animals = [
@@ -64,19 +66,90 @@ const animals = [
 		status: "Ищет дом",
 		image: "/pet4.jpg",
 	},
+	{
+		id: 5,
+		name: "Пушистик",
+		type: "Кролик",
+		age: 1,
+		breed: "Ангорский",
+		color: "Белый",
+		vaccinated: true,
+		status: "Ищет дом",
+		image: "/pet5.jpg",
+	},
+	{
+		id: 6,
+		name: "Бобик",
+		type: "Собака",
+		age: 2,
+		breed: "Такса",
+		color: "Коричневый",
+		vaccinated: false,
+		status: "На лечении",
+		image: "/pet6.jpg",
+	},
+	{
+		id: 7,
+		name: "Снежок",
+		type: "Кошка",
+		age: 3,
+		breed: "Персидская",
+		color: "Белый",
+		vaccinated: true,
+		status: "Ищет дом",
+		image: "/pet7.jpg",
+	},
+	{
+		id: 8,
+		name: "Рыжик",
+		type: "Кот",
+		age: 4,
+		breed: "Мейн-кун",
+		color: "Рыжий",
+		vaccinated: true,
+		status: "Нуждается в помощи",
+		image: "/pet8.jpg",
+	},
 ];
 
 export function MainPage() {
+	// Состояния для пагинации
+	const [currentPage, setCurrentPage] = useState(1);
+	const [itemsPerPage] = useState(3); // 3 карточки на страницу
+
+	// Вычисляем данные для текущей страницы
+	const indexOfLastItem = currentPage * itemsPerPage;
+	const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+	const currentAnimals = animals.slice(indexOfFirstItem, indexOfLastItem);
+
+	const handlePageChange = (page: number) => {
+		setCurrentPage(page);
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	};
+
 	return (
 		<Box
 			sx={{
 				display: "flex",
 				flexDirection: { xs: "column", md: "row" },
 				gap: 3,
+				minHeight: "100vh",
+				p: 2,
 			}}
 		>
 			{/* Левая колонка - форма фильтров */}
-			<Paper sx={{ p: 3, flex: 1, maxWidth: 400 }}>
+			<Paper
+				sx={{
+					p: 3,
+					flex: 1,
+					maxWidth: 400,
+					height: "fit-content",
+					position: "relative",
+					top: 20,
+					alignSelf: "flex-start",
+					mb: { xs: 3, md: 0 },
+				}}
+			>
 				<Typography variant="h6" gutterBottom>
 					Поиск животного
 				</Typography>
@@ -136,13 +209,21 @@ export function MainPage() {
 				</Box>
 			</Paper>
 
-			{/* Правая колонка - список животных БЕЗ GRID */}
-			<Paper sx={{ p: 3, flex: 2 }}>
+			{/* Правая колонка - список животных с пагинацией */}
+			<Paper
+				sx={{
+					p: 3,
+					flex: 2,
+					display: "flex",
+					flexDirection: "column",
+					minHeight: 0,
+				}}
+			>
 				<Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
 					Найдено животных: {animals.length}
 				</Typography>
 
-				{/* Используем CSS Grid вместо MUI Grid */}
+				{/* Сетка с карточками */}
 				<Box
 					sx={{
 						display: "grid",
@@ -152,9 +233,11 @@ export function MainPage() {
 							md: "repeat(2, 1fr)",
 						},
 						gap: 3,
+						mb: 3,
+						flexGrow: 1,
 					}}
 				>
-					{animals.map((animal) => (
+					{currentAnimals.map((animal) => (
 						<Card
 							key={animal.id}
 							sx={{
@@ -168,7 +251,7 @@ export function MainPage() {
 								},
 							}}
 						>
-							{/* Фото животного с абсолютно одинаковым размером */}
+							{/* Фото животного */}
 							<Box
 								sx={{
 									width: "100%",
@@ -245,6 +328,18 @@ export function MainPage() {
 							</CardActions>
 						</Card>
 					))}
+				</Box>
+
+				{/* Пагинация */}
+				<Box sx={{ display: "flex", justifyContent: "center", mt: "auto" }}>
+					<Pagination
+						count={Math.ceil(animals.length / itemsPerPage)}
+						page={currentPage}
+						onChange={(_, page) => handlePageChange(page)}
+						color="primary"
+						showFirstButton
+						showLastButton
+					/>
 				</Box>
 			</Paper>
 		</Box>
