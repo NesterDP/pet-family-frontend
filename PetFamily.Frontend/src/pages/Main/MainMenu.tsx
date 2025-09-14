@@ -36,6 +36,12 @@ export function Menu() {
 				scrollButtons
 				allowScrollButtonsMobile
 				aria-label="navigation menu"
+				sx={{
+					"& .MuiTab-root:hover": {
+						color: "primary.main",
+						backgroundColor: "action.hover",
+					},
+				}}
 			>
 				<Tab icon={<HomeIcon />} label="Главная" iconPosition="start" />
 				<Tab

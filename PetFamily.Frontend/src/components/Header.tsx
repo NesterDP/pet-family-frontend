@@ -32,7 +32,7 @@ export function Header() {
 
 				{/* Правые иконки */}
 				<div className="flex flex-row items-center gap-2">
-					<IconButton onClick={() => navigate("/account")} color="inherit">
+					<IconButton onClick={() => navigate("/login")} color="inherit">
 						<PersonIcon />
 					</IconButton>
 					<IconButton

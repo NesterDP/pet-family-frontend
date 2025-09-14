@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import { Menu } from "../components/Menu";
-import { PageContainer } from "../components/PageContainer";
 import Game from "../pages/Game/components/Game";
-import { MainPage } from "../pages/MainPage";
+import { LoginMenu } from "../pages/Login/LoginMenu";
+import { LoginPage } from "../pages/Login/LoginPage";
+import { Menu } from "../pages/Main/MainMenu";
+import { MainPage } from "../pages/Main/MainPage";
 import { RootLayout } from "./RootLayout";
 
 export const router = createBrowserRouter([
@@ -13,10 +14,8 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: (
 					<>
-						<PageContainer>
-							<Menu />
-							<MainPage />
-						</PageContainer>
+						<Menu />
+						<MainPage />
 					</>
 				),
 			},
@@ -47,7 +46,17 @@ export const router = createBrowserRouter([
 					</>
 				),
 			},
+			{
+				path: "login",
+				element: (
+					<>
+						{/* <BackMenu /> */}
+						<LoginMenu />
+						<LoginPage />
+					</>
+				),
+			},
 		],
-		errorElement: <div>404</div>,
+		errorElement: <div>Попытка перейти по несуществующему пути</div>,
 	},
 ]);
