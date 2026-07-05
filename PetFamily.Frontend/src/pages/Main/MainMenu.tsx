@@ -4,7 +4,7 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import { Paper, Tab, Tabs } from "@mui/material";
 import { useLocation, useNavigate } from "react-router";
 
-export function Menu() {
+export function MainMenu() {
 	const navigate = useNavigate();
 	const location = useLocation();
 

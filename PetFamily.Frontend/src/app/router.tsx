@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router";
 import Game from "../pages/Game/components/Game";
 import { LoginMenu } from "../pages/Login/LoginMenu";
 import { LoginPage } from "../pages/Login/LoginPage";
-import { Menu } from "../pages/Main/MainMenu";
+import { MainMenu } from "../pages/Main/MainMenu";
 import { MainPage } from "../pages/Main/MainPage";
+import { TestPage } from "../pages/Test/TestPage";
 import { RootLayout } from "./RootLayout";
 
 export const router = createBrowserRouter([
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						<MainPage />
 					</>
 				),
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
 				path: "volunteers",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						Волонтеры
 					</>
 				),
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
 				path: "pets",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						Питомцы
 					</>
 				),
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
 				path: "game",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						<Game />
 					</>
 				),
@@ -53,6 +54,15 @@ export const router = createBrowserRouter([
 						{/* <BackMenu /> */}
 						<LoginMenu />
 						<LoginPage />
+					</>
+				),
+			},
+			{
+				path: "test",
+				element: (
+					<>
+						<MainMenu />
+						<TestPage />
 					</>
 				),
 			},

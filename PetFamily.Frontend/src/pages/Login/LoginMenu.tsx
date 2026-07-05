@@ -14,6 +14,7 @@ export function LoginMenu() {
 			}}
 		>
 			<Tabs
+				value={false}
 				variant="scrollable"
 				scrollButtons
 				allowScrollButtonsMobile

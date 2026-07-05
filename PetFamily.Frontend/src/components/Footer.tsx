@@ -35,7 +35,7 @@ export function Footer() {
 			</div>
 
 			{/* Правая часть: текст */}
-			<div className="text-sm opacity-80">©Автор сайта 2025</div>
+			<div className="text-sm opacity-80">©Автор сайта 2026</div>
 		</Paper>
 	);
 }
