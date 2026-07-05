@@ -18,7 +18,7 @@ export function LoginPage() {
 	};
 
 	return (
-		<div className="flex flex-col h-full w-full px-10 justify-center items-start gap-4">
+		<div className="flex flex-col h-full w-full px-10 justify-center items-start gap-4 pt-16">
 			<div className="flex flex-col flex-1 min-w-80 mx-auto items-center gap-9">
 				<form
 					className="flex flex-col w-full items-center gap-7"
@@ -41,11 +41,28 @@ export function LoginPage() {
 					/>
 					<TextField
 						variant="standard"
+						error={!!errors.password}
+						helperText={errors.password?.message}
 						label="Пароль"
 						fullWidth
-						{...register("password")}
+						{...register("password", {
+							validate: (value) => {
+								if (value.length < 6) {
+									return "Пароль должен быть не менее 6 символов";
+								}
+							},
+						})}
 					/>
 					<Button type="submit">Войти</Button>
+					<div className="flex flex-col items-center gap-1 mt-2">
+						<span>Нет аккаунта?</span>
+						<a
+							href="/register"
+							className="text-blue-600 underline hover:text-blue-800"
+						>
+							Зарегистрироваться
+						</a>
+					</div>
 				</form>
 			</div>
 		</div>
