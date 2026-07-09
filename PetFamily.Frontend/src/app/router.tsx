@@ -4,6 +4,7 @@ import { LoginMenu } from "../pages/Login/LoginMenu";
 import { LoginPage } from "../pages/Login/LoginPage";
 import { MainMenu } from "../pages/Main/MainMenu";
 import { MainPage } from "../pages/Main/MainPage";
+import { GameTable } from "../pages/MyGame/GameTable";
 import { TestPage } from "../pages/Test/TestPage";
 import { RootLayout } from "./RootLayout";
 
@@ -63,6 +64,15 @@ export const router = createBrowserRouter([
 					<>
 						<MainMenu />
 						<TestPage />
+					</>
+				),
+			},
+			{
+				path: "myGame",
+				element: (
+					<>
+						<MainMenu />
+						<GameTable />
 					</>
 				),
 			},
