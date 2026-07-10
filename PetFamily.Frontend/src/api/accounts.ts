@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Envelope } from "../models/Envelope";
 import { LoginResponse } from "../models/LoginResponse";
+import { api } from "./api";
 
 const API_URL: string = "http://localhost:5011/api/";
 
@@ -18,7 +19,7 @@ export class AccountsService {
 		email: string,
 		password: string,
 	): Promise<AxiosResponse<Envelope<LoginResponse>>> {
-		return axios.post<Envelope<LoginResponse>>(API_URL + "accounts/login", {
+		return api.post<Envelope<LoginResponse>>("accounts/login", {
 			email,
 			password,
 		});

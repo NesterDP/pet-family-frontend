@@ -1,16 +1,22 @@
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
-import { AccountsService } from "../../api/accounts";
+import { api } from "../../api/api";
 
 export function TestPage() {
 	const [users, setUsers] = useState<string[]>([]);
 
+	// useEffect(() => {
+	// 	const fetchUsers = async () => {
+	// 		const response = await AccountsService.getUsers();
+	// 		setUsers(response);
+	// 	};
+	// 	fetchUsers();
+	// }, []);
+
 	useEffect(() => {
-		const fetchUsers = async () => {
-			const response = await AccountsService.getUsers();
-			setUsers(response);
-		};
-		fetchUsers();
+		api.post("Accounts/test").then((response) => {
+			console.log(response);
+		});
 	}, []);
 
 	return (

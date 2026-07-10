@@ -28,6 +28,8 @@ export function LoginPage() {
 			setAccessToken(response.data.result!.accessToken);
 			setRefreshToken(response.data.result!.refreshToken);
 			setIsLoading(false);
+
+			localStorage.setItem("accessToken", response.data.result!.accessToken);
 		} catch {
 			setIsError(true);
 			setIsLoading(false);
