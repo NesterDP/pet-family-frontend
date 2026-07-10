@@ -1,12 +1,26 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Envelope } from "../models/Envelope";
+import { LoginResponse } from "../models/LoginResponse";
 
 const API_URL: string = "http://localhost:5011/api/";
 
-export async function getUsers() {
-	const response = await axios.get<string[]>(API_URL + "users");
+export class AccountsService {
+	static async getUsers() {
+		const response = await axios.get<string[]>(API_URL + "users");
 
-	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-	await sleep(3000);
+		const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+		await sleep(3000);
 
-	return response.data;
+		return response.data;
+	}
+
+	static async login(
+		email: string,
+		password: string,
+	): Promise<AxiosResponse<Envelope<LoginResponse>>> {
+		return axios.post<Envelope<LoginResponse>>(API_URL + "accounts/login", {
+			email,
+			password,
+		});
+	}
 }
