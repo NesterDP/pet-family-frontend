@@ -1,5 +1,6 @@
 import { Button, Skeleton, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { useAuth } from "../../contexts/auth/useAuth";
 
 type LoginFields = {
@@ -11,13 +12,16 @@ export function LoginPage() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isLoading },
+		formState: { errors },
 	} = useForm<LoginFields>();
 
-	const { login, accessToken } = useAuth();
+	const { login, accessToken, isLoading, isError } = useAuth();
 
+	const navigate = useNavigate();
 	const onSubmit = async (data: LoginFields) => {
 		await login(data.email, data.password);
+
+		navigate("/profile");
 	};
 
 	return (

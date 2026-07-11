@@ -1,6 +1,7 @@
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import CrueltyFreeIcon from "@mui/icons-material/CrueltyFree";
+import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PersonIcon from "@mui/icons-material/Person";
 import StarIcon from "@mui/icons-material/Star";
 import { AppBar, IconButton } from "@mui/material";
 import { useNavigate } from "react-router";
@@ -8,7 +9,7 @@ import { useAuth } from "../contexts/auth/useAuth";
 
 export function Header() {
 	const navigate = useNavigate();
-	const { accessToken } = useAuth();
+	const { accessToken, logout } = useAuth();
 
 	return (
 		<AppBar position="static" color="primary">
@@ -34,18 +35,19 @@ export function Header() {
 
 				{/* Правые иконки */}
 				<div className="flex flex-row items-center gap-2">
-					{accessToken !== "" ? (
+					{accessToken === undefined ? (
 						<IconButton onClick={() => navigate("/login")} color="inherit">
-							<PersonIcon />
+							<LoginIcon />
 						</IconButton>
 					) : (
-						<IconButton
-							onClick={() => navigate("/logout")}
-							color="inherit"
-							edge="end"
-						>
-							<LogoutIcon />
-						</IconButton>
+						<div>
+							<IconButton onClick={() => navigate("/profile")} color="inherit">
+								<AccountBoxIcon />
+							</IconButton>
+							<IconButton onClick={() => logout()} color="inherit" edge="end">
+								<LogoutIcon />
+							</IconButton>
+						</div>
 					)}
 				</div>
 			</div>

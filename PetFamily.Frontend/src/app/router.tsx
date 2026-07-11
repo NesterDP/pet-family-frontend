@@ -5,6 +5,7 @@ import { LoginPage } from "../pages/Login/LoginPage";
 import { MainMenu } from "../pages/Main/MainMenu";
 import { MainPage } from "../pages/Main/MainPage";
 import { GameTable } from "../pages/MyGame/GameTable";
+import { ProfilePage } from "../pages/Profile/ProfilePage";
 import { TestPage } from "../pages/Test/TestPage";
 import { RootLayout } from "./RootLayout";
 
@@ -73,6 +74,14 @@ export const router = createBrowserRouter([
 					<>
 						<MainMenu />
 						<GameTable />
+					</>
+				),
+			},
+			{
+				path: "profile",
+				element: (
+					<>
+						<ProfilePage />
 					</>
 				),
 			},

@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Envelope } from "../models/Envelope";
 import { LoginResponse } from "../models/LoginResponse";
+import { LogoutResponse } from "../models/LogoutResponse";
 import { api } from "./api";
 
 const API_URL: string = "http://localhost:5011/api/";
@@ -23,6 +24,10 @@ export class AccountsService {
 			email,
 			password,
 		});
+	}
+
+	static async logout() {
+		return api.post<Envelope<LogoutResponse>>("accounts/logout");
 	}
 
 	// Вызываем именно стандартный экземпляр axios, а не api

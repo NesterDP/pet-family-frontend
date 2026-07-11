@@ -7,6 +7,9 @@ type AuthContextType = {
 	accessToken: string | undefined;
 	user: User | undefined;
 	login: (email: string, password: string) => Promise<void>;
+	isLoading: boolean;
+	isError: boolean;
+	logout: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -18,6 +21,9 @@ type Props = { children: React.ReactNode };
 export const AuthProvider = ({ children }: Props) => {
 	const [accessToken, setAccessToken] = useState<string | undefined>(undefined);
 	const [user, setUser] = useState<User | undefined>(undefined);
+
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isError, setIsError] = useState<boolean>(false);
 
 	// Устанавливаем интерцептор на ответы сервера
 	// Через useLayoutEffect,
@@ -46,7 +52,7 @@ export const AuthProvider = ({ children }: Props) => {
 						setAccessToken(response.data.result!.accessToken);
 						setUser({
 							email: response.data.result!.email,
-							id: response.data.result!.id,
+							id: response.data.result!.userId,
 						} as User);
 
 						// Меняем заголвок Authorization на новый, со свежим accessToken
@@ -102,6 +108,7 @@ export const AuthProvider = ({ children }: Props) => {
 	// Async функции возвращают именно Promise
 	const login = async (email: string, password: string) => {
 		try {
+			setIsLoading(true);
 			const response = await AccountsService.login(email, password);
 
 			setAccessToken(response.data.result!.accessToken);
@@ -109,13 +116,30 @@ export const AuthProvider = ({ children }: Props) => {
 				email: response.data.result!.email,
 				id: response.data.result!.userId,
 			} as User);
+
+			setIsLoading(false);
 		} catch {
+			setIsLoading(false);
+			setIsError(true);
+			console.log("error");
+		}
+	};
+
+	const logout = async () => {
+		try {
+			await AccountsService.logout();
+			setAccessToken(undefined);
+			setUser(undefined);
+		} catch {
+			setIsError(true);
 			console.log("error");
 		}
 	};
 
 	return (
-		<AuthContext.Provider value={{ accessToken, user, login }}>
+		<AuthContext.Provider
+			value={{ accessToken, user, login, logout, isLoading, isError }}
+		>
 			{children}
 		</AuthContext.Provider>
 	);
