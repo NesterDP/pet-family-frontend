@@ -24,6 +24,9 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+dist
+dist/
+*.jpg
 
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build
@@ -39,5 +42,4 @@ packages/react-devtools-inline/dist
 packages/react-devtools-shell/dist
 packages/react-devtools-timeline/dist
 
-public/*.jpg
-src/pages/test.html
+PetFamily.Frontend/src/api/test.ts

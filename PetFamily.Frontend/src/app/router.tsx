@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router";
-import { Menu } from "../components/Menu";
-import { PageContainer } from "../components/PageContainer";
 import Game from "../pages/Game/components/Game";
-import { MainPage } from "../pages/MainPage";
+import { LoginMenu } from "../pages/Login/LoginMenu";
+import { LoginPage } from "../pages/Login/LoginPage";
+import { MainMenu } from "../pages/Main/MainMenu";
+import { MainPage } from "../pages/Main/MainPage";
+import { GameTable } from "../pages/MyGame/GameTable";
+import { ProfilePage } from "../pages/Profile/ProfilePage";
+import { TestPage } from "../pages/Test/TestPage";
 import { RootLayout } from "./RootLayout";
 
 export const router = createBrowserRouter([
@@ -13,10 +17,8 @@ export const router = createBrowserRouter([
 				path: "/",
 				element: (
 					<>
-						<PageContainer>
-							<Menu />
-							<MainPage />
-						</PageContainer>
+						<MainMenu />
+						<MainPage />
 					</>
 				),
 			},
@@ -24,7 +26,7 @@ export const router = createBrowserRouter([
 				path: "volunteers",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						Волонтеры
 					</>
 				),
@@ -33,7 +35,7 @@ export const router = createBrowserRouter([
 				path: "pets",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						Питомцы
 					</>
 				),
@@ -42,12 +44,48 @@ export const router = createBrowserRouter([
 				path: "game",
 				element: (
 					<>
-						<Menu />
+						<MainMenu />
 						<Game />
 					</>
 				),
 			},
+			{
+				path: "login",
+				element: (
+					<>
+						{/* <BackMenu /> */}
+						<LoginMenu />
+						<LoginPage />
+					</>
+				),
+			},
+			{
+				path: "test",
+				element: (
+					<>
+						<MainMenu />
+						<TestPage />
+					</>
+				),
+			},
+			{
+				path: "myGame",
+				element: (
+					<>
+						<MainMenu />
+						<GameTable />
+					</>
+				),
+			},
+			{
+				path: "profile",
+				element: (
+					<>
+						<ProfilePage />
+					</>
+				),
+			},
 		],
-		errorElement: <div>404</div>,
+		errorElement: <div>Попытка перейти по несуществующему пути</div>,
 	},
 ]);

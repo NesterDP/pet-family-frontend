@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1>Simple Grid (Strict 3x3)</h1>
+		<div
+			style="
+				display: grid;
+				grid-template-columns: repeat(4, 25%);
+				grid-template-rows: repeat(2, 100px);
+				height: 300px;
+				width: 300px;
+				border: 3px solid black;
+				grid-auto-rows: 0; /* Запрещаем создание новых строк */
+				overflow: hidden; /* Прячем всё, что не поместилось */
+			"
+		>
+			<div style="background-color: lightblue; padding: 20px; order: 1">1</div>
+			<div style="background-color: lightgreen; padding: 20px; order: -1">
+				2
+			</div>
+		</div>
+	</body>
+</html>
