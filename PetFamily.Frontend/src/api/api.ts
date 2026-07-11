@@ -8,10 +8,10 @@ export const api = axios.create({
 });
 
 // Интерцептор для добавления токена в каждый запрос
-api.interceptors.request.use((config) => {
-	const token = localStorage.getItem("accessToken");
-	if (token) {
-		config.headers.Authorization = `Bearer ${token}`;
-	}
-	return config;
-});
+// api.interceptors.request.use((config) => {
+// 	const token = localStorage.getItem("accessToken");
+// 	if (token) {
+// 		config.headers.Authorization = `Bearer ${token}`;
+// 	}
+// 	return config;
+// });

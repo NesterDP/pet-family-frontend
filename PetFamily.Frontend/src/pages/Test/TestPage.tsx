@@ -1,9 +1,9 @@
 import { Paper } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { api } from "../../api/api";
 
 export function TestPage() {
-	const [users, setUsers] = useState<string[]>([]);
+	// const [users, setUsers] = useState<string[]>([]);
 
 	// useEffect(() => {
 	// 	const fetchUsers = async () => {
@@ -27,9 +27,9 @@ export function TestPage() {
 				borderRadius: 2, // скругленные углы
 			}}
 		>
-			{users.map((user) => (
+			{/* {users.map((user) => (
 				<div>{user}</div>
-			))}
+			))} */}
 		</Paper>
 	);
 }

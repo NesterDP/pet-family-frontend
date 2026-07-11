@@ -24,4 +24,16 @@ export class AccountsService {
 			password,
 		});
 	}
+
+	// Вызываем именно стандартный экземпляр axios, а не api
+	// Чтобы избежать бесконечных попыток получить новый токен
+	static async refresh() {
+		return axios.post<Envelope<LoginResponse>>(
+			API_URL + "accounts/refresh",
+			{},
+			{
+				withCredentials: true,
+			},
+		);
+	}
 }
