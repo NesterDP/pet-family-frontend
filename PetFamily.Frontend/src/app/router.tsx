@@ -6,6 +6,8 @@ import { MainMenu } from "../pages/Main/MainMenu";
 import { MainPage } from "../pages/Main/MainPage";
 import { GameTable } from "../pages/MyGame/GameTable";
 import { ProfilePage } from "../pages/Profile/ProfilePage";
+import { RegisterMenu } from "../pages/Register/RegisterMenu";
+import { RegisterPage } from "../pages/Register/RegisterPage";
 import { TestPage } from "../pages/Test/TestPage";
 import { RootLayout } from "./RootLayout";
 
@@ -53,9 +55,17 @@ export const router = createBrowserRouter([
 				path: "login",
 				element: (
 					<>
-						{/* <BackMenu /> */}
 						<LoginMenu />
 						<LoginPage />
+					</>
+				),
+			},
+			{
+				path: "register",
+				element: (
+					<>
+						<RegisterMenu />
+						<RegisterPage />
 					</>
 				),
 			},

@@ -15,7 +15,7 @@ export function LoginPage() {
 		formState: { errors },
 	} = useForm<LoginFields>();
 
-	const { login, accessToken, isLoading, isError } = useAuth();
+	const { login, accessToken, isLoading } = useAuth();
 
 	const navigate = useNavigate();
 	const onSubmit = async (data: LoginFields) => {

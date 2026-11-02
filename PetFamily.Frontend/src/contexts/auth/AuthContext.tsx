@@ -10,6 +10,11 @@ type AuthContextType = {
 	isLoading: boolean;
 	isError: boolean;
 	logout: () => Promise<void>;
+	userRegister: (
+		email: string,
+		userName: string,
+		password: string,
+	) => Promise<boolean>;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -25,9 +30,11 @@ export const AuthProvider = ({ children }: Props) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isError, setIsError] = useState<boolean>(false);
 
+	// const navigate = useNavigate();
+
 	// Устанавливаем интерцептор на ответы сервера
 	// Через useLayoutEffect,
-	// потому что он код внутри него выполнится после стадии "рендер", но до отрисовки
+	// потому что код внутри него выполнится после стадии "рендер", но до отрисовки
 	useLayoutEffect(() => {
 		const refreshInterceptor = api.interceptors.response.use(
 			// Если ответ успешен (код лежит в диапазоне от 200 по 299)
@@ -76,7 +83,7 @@ export const AuthProvider = ({ children }: Props) => {
 			},
 		);
 
-		// Cleanup функция. Без массива зависимостей вызовести 1 раз - в конце жизни приложения
+		// Cleanup функция. Без массива зависимостей вызывается 1 раз - в конце жизни приложения
 		// Здесь выполняет роль защиты от двойного монтирования (чтобы не отправлять двойные запросы)
 		// по логике приложения двойного монтирования не может быть, но оно есть в реакт режиме разработки
 		return () => {
@@ -84,6 +91,7 @@ export const AuthProvider = ({ children }: Props) => {
 		};
 	}, []); // Зависимостей нет, интецесптор устанавливается один раз в начале работы приложения
 
+	// Добавляем интерцептор на запросы к серверу
 	// К каждому запросу добавляем заголовок Authorization с key = accessToken
 	useEffect(() => {
 		const accessTokenInterceptor = api.interceptors.request.use((config) => {
@@ -97,7 +105,7 @@ export const AuthProvider = ({ children }: Props) => {
 		});
 
 		// Cleanup функция.
-		// Будет вызываться при каждом новой вызове функции внутри useEffect
+		// Будет вызываться при каждом новом вызове функции внутри useEffect
 		// т.е при изменении accessToken
 		// Также выполнится в конце жизни приложения
 		return () => {
@@ -130,15 +138,50 @@ export const AuthProvider = ({ children }: Props) => {
 			await AccountsService.logout();
 			setAccessToken(undefined);
 			setUser(undefined);
+			document.cookie = `refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+			// navigate("/login");
 		} catch {
 			setIsError(true);
 			console.log("error");
+			setAccessToken(undefined);
+			setUser(undefined);
+			document.cookie = `refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+		}
+	};
+
+	const userRegister = async (
+		email: string,
+		userName: string,
+		password: string,
+	) => {
+		setIsLoading(true);
+		try {
+			const response = await AccountsService.register(
+				email,
+				userName,
+				password,
+			);
+
+			return response.status === 200;
+		} catch (error) {
+			setIsError(true);
+			throw error;
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
 	return (
 		<AuthContext.Provider
-			value={{ accessToken, user, login, logout, isLoading, isError }}
+			value={{
+				accessToken,
+				user,
+				login,
+				logout,
+				userRegister,
+				isLoading,
+				isError,
+			}}
 		>
 			{children}
 		</AuthContext.Provider>
