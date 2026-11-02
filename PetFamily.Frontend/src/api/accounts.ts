@@ -16,6 +16,18 @@ export class AccountsService {
 		return response.data;
 	}
 
+	static async register(
+		email: string,
+		userName: string,
+		password: string,
+	): Promise<AxiosResponse<Envelope<string>>> {
+		return api.post<Envelope<string>>("accounts/registration", {
+			email,
+			userName,
+			password,
+		});
+	}
+
 	static async login(
 		email: string,
 		password: string,

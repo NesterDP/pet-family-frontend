@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const API_URL: string = "http://localhost:5011/api/";
 
+// export const API_URL: string = "/api/";
+
 export const api = axios.create({
 	baseURL: API_URL,
 	withCredentials: true,
